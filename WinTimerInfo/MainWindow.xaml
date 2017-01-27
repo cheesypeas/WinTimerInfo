@@ -1,0 +1,29 @@
+﻿<Window x:Class="WinTimerInfo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:winTimerInfo="clr-namespace:WinTimerInfo"
+        Title="MainWindow" Height="334" Width="270" Loaded="Window_Loaded">
+    <Window.Resources>
+        <winTimerInfo:FrequencyConverter x:Key="FrequencyConverter" />
+        <winTimerInfo:DurationConverter x:Key="DurationConverter" />
+        <winTimerInfo:RatioConverter x:Key="RatioConverter" />
+    </Window.Resources>
+    <Grid RenderTransformOrigin="0.507,0.359">
+        <GroupBox Header="QueryPerformanceFrequency" HorizontalAlignment="Left" Height="46" Margin="10,10,0,0" VerticalAlignment="Top" Width="235">
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding PerfCounter.Frequency, Converter={StaticResource FrequencyConverter}}" VerticalAlignment="Center" Width="225" Margin="0,0,-2,0"/>
+        </GroupBox>
+        <GroupBox Header="QueryPerformanceCounter" HorizontalAlignment="Left" Height="46" Margin="10,61,0,0" VerticalAlignment="Top" Width="235">
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding PerfCounter.Duration, Converter={StaticResource DurationConverter}}" VerticalAlignment="Center" Width="225" Margin="0,0,-2,0"/>
+        </GroupBox>
+        <GroupBox Header="GetTickCount" HorizontalAlignment="Left" Height="46" Margin="10,112,0,0" VerticalAlignment="Top" Width="235">
+            <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding TickCounter.Duration, Converter={StaticResource DurationConverter}}" VerticalAlignment="Center" Width="225" Margin="0,0,-2,0"/>
+        </GroupBox>
+        <GroupBox Header="Ratio (QPC/GTC)" HorizontalAlignment="Left" Height="46" Margin="10,163,0,0" VerticalAlignment="Top" Width="235">
+            <TextBlock Name="Ratio" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Ratio, Converter={StaticResource RatioConverter}}" VerticalAlignment="Center" Width="225" Margin="0,0,-2,0"/>
+        </GroupBox>
+        <Button Name="ButtonStart" Content="Start" Click="OnClickStart" HorizontalAlignment="Left" Margin="10,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ButtonStop" Content="Stop" Click="OnClickPause" HorizontalAlignment="Left" Margin="90,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ButtonReset" Content="Reset" Click="OnClickReset" HorizontalAlignment="Left" Margin="170,265,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="ButtonLog" Content="Log" Click="OnClickLog" HorizontalAlignment="Left" Margin="217,214,0,0" VerticalAlignment="Top" Width="28"/>
+    </Grid>
+</Window>
